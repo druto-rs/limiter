@@ -1,0 +1,28 @@
+[package]
+name = "druto-limiter"
+version = "0.1.0"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+rust-version = "1.95"
+description = "Traffic throttling, rate limiting, burst management, and standardized HTTP headers for Druto"
+repository = "https://github.com/druto-rs/limiter"
+readme = "README.md"
+keywords = ["limiter", "rate-limiting", "druto", "middleware", "token-bucket"]
+categories = ["web-programming::http-server"]
+
+[features]
+default = []
+redis = ["dep:redis"]
+
+[dependencies]
+bytes = "1.12.2"
+dhap = { git = "https://github.com/Hitarashi/dhap.git", branch = "main" }
+lagam = { git = "https://github.com/Hitarashi/lagam.git", branch = "main", features = ["redis", "http"] }
+redis = { package = "druto-redis", git = "https://github.com/druto-rs/redis.git", branch = "main", optional = true }
+router = { package = "druto-router", git = "https://github.com/druto-rs/router.git", branch = "main" }
+serde = { version = "1.0.229", default-features = false, features = ["derive", "alloc"] }
+serde_json = "1.0.154"
+
+[dev-dependencies]
+proptest = "1.12.0"
+redis = { package = "druto-redis", git = "https://github.com/druto-rs/redis.git", branch = "main" }
